@@ -1,7 +1,9 @@
 # Git-Depend
 
-install with
+## Installation
+
+Install with:
 
 ```
-$ curl https://raw.github.com/matsko/Git-Depend/master/install.sh | bash
+curl https://raw.github.com/matsko/Git-Depend/master/install.sh | bash
 ```

@@ -47,8 +47,7 @@ files = doc
 files.each do |file|
   repo = file['repo']
   path = file['path']
-  keep = file['keep'] || 'true'
-  keep = keep != 'false'
+  keep = file['keep'].to_s != 'false'
   branch = file['branch'] || 'master'
   reset = file.has_key?('reset') ? file['reset'] == 'true' : true
   git = File.join(path,'.git/')
@@ -61,6 +60,7 @@ files.each do |file|
     `git pull origin #{branch}`
     Dir.chdir(root)
   else
+    `rm -fr #{path}`
     `mkdir -p #{path}`
     `git clone #{repo} #{path}`
     if branch != 'master'

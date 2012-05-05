@@ -47,10 +47,13 @@ files = doc
 files.each do |file|
   repo = file['repo']
   path = file['path']
+  keep = file['keep'] || 'true'
+  keep = keep != 'false'
   branch = file['branch'] || 'master'
   reset = file.has_key?('reset') ? file['reset'] == 'true' : true
+  git = File.join(path,'.git/')
 
-  if File.directory?(path) && File.directory?(File.join(path,'.git/'))
+  if keep && File.directory?(path) && File.directory?(git)
     Dir.chdir(path)
     if reset 
       `git reset --hard HEAD`
@@ -64,6 +67,10 @@ files.each do |file|
       `git checkout #{branch}`
       `git pull origin #{branch}`
     end
+  end
+
+  unless keep
+    `rm -fr #{git}`
   end
 
 end

@@ -13,7 +13,7 @@ fi
 
 mkdir -p $BIN_DIR
 
-git clone git://github.com/matsko/Git-Depend.git $DIR
+git clone git://github.com/yearofmoo/Git-Depend.git $DIR
 
 if [ ! -f $FILE ]; then
   echo "Git-Depend: Git pull operation failed."
